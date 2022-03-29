@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<h:outputStylesheet library="css" name="styles.css" />
+</h:head>
+
+<h:body>
+	<div class="main">
+		<div class="duke">
+			<h:graphicImage url="#{resource['Duke_waving.svg']}" />
+		</div>
+
+		<h2>Hello, #{hello.name}!</h2>
+
+		<p></p>
+
+		<h:form>
+			<div class="buttons">
+				<h:commandButton value="Back" action="index" />
+			</div>
+		</h:form>
+	</div>
+</h:body>
+
+</html>

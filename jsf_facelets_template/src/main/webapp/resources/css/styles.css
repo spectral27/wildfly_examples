@@ -1,0 +1,38 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+}
+
+.main {
+	margin: auto;
+	max-width: 30em;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	padding: 1em 0;
+}
+
+.div1 {
+	height: 4em;
+	border: 1px solid red;
+	border-radius: 8px;
+}
+
+.div2 {
+	height: 4em;
+	border: 1px solid blue;
+	border-radius: 8px;
+}
+
+.div3 {
+	height: 4em;
+	border: 1px solid green;
+	border-radius: 8px;
+}
+
+p {
+	margin: 1em 1em;
+}
