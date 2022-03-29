@@ -1,0 +1,27 @@
+version: "3.9"
+
+volumes:
+  mysqlvolume:
+
+services:
+  mysqldatabase:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "database1"
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - mysqlvolume:/var/lib/mysql
+
+  backend:
+    depends_on:
+      - mysqldatabase
+    build:
+      context: ./main_backend
+    restart: on-failure
+    ports:
+      - "8080:8080"
+      - "9990:9990"

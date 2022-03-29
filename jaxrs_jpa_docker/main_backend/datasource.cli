@@ -1,0 +1,30 @@
+embed-server \
+--server-config=standalone.xml \
+--std-out=echo
+    
+batch
+
+# create the module
+module add \
+--name=mysqldriver \
+--resources=/resources/mysqldriver.jar \
+--dependencies=javax.api,javax.transaction.api
+
+# create the driver
+/subsystem=datasources/jdbc-driver=mysql:add(driver-name="mysql",\
+driver-module-name="mysqldriver",\
+driver-class-name=com.mysql.cj.jdbc.Driver)
+
+# create the datasource
+data-source add \
+--name=mysqlDS \
+--jndi-name=java:jboss/datasources/mysqlDS \
+--connection-url=jdbc:mysql://mysqldatabase:3306/database1 \
+--driver-name=mysql \
+--user-name=root \
+--password=root
+
+run-batch
+
+stop-embedded-server
+
