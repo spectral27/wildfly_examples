@@ -1,4 +1,4 @@
-package jms_helloworld;
+package mdb_helloworld;
 
 import java.util.logging.Logger;
 import javax.ejb.ActivationConfigProperty;

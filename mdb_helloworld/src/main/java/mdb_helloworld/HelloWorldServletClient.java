@@ -1,4 +1,4 @@
-package jms_helloworld;
+package mdb_helloworld;
 
 import java.io.IOException;
 import java.io.PrintWriter;

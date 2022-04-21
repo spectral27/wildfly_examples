@@ -1,4 +1,4 @@
-Java Messaging Service example application.  
+Message Driven Bean with JMS example application.  
 
 Deploy with WildFly in Eclipse or in standalone mode (both with -c standalone-full.xml configuration enabled).  
 
