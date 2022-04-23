@@ -1,0 +1,11 @@
+embed-server --server-config=standalone-full.xml --std-out=echo
+
+batch
+
+jms-queue add \
+--queue-address=testQueue \
+--entries=java:/jms/queue/testQueue,java:jboss/exported/jms/queue/testQueue
+
+run-batch
+
+stop-embedded-server
