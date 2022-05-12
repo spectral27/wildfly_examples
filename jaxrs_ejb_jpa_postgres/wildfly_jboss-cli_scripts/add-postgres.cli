@@ -3,13 +3,13 @@ embed-server --server-config=standalone.xml --std-out=echo
 batch
 
 module add \
---name=postgresdriver \
+--name=postgresdrivermodule \
 --resources=add-scripts/postgresql-42.3.5.jar \
 --dependencies=javax.api,javax.transaction.api
 
-/subsystem=datasources/jdbc-driver=postgres:add(\
-driver-name="postgres",\
-driver-module-name="postgresdriver",\
+/subsystem=datasources/jdbc-driver=postgresdriver:add(\
+driver-name="postgresdriver",\
+driver-module-name="postgresdrivermodule",\
 driver-class-name=org.postgresql.Driver\
 )
 
@@ -17,7 +17,7 @@ data-source add \
 --name=postgresDS \
 --jndi-name=java:jboss/datasources/postgresDS \
 --connection-url=jdbc:postgresql://localhost:5432/postgres \
---driver-name=postgres \
+--driver-name=postgresdriver \
 --user-name=postgres \
 --password=root
 

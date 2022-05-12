@@ -1,0 +1,11 @@
+embed-server --server-config=standalone.xml --std-out=echo
+
+batch
+
+data-source remove --name=postgresDS
+
+/subsystem=datasources/jdbc-driver=postgresdriver:remove
+
+module remove --name=postgresdrivermodule
+
+run-batch
