@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,6 +13,9 @@ public class RecordRepositoryBean implements RecordRepository {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
+	@Inject
+	private Generators generators;
 	
 	public List<Record> selectAllRecords() {
 		return entityManager.createQuery("select r from Record r", Record.class).getResultList();
@@ -22,9 +26,14 @@ public class RecordRepositoryBean implements RecordRepository {
 	}
 
 	public void insertRecord(Record record) {
+		if (record == null) {
+			record = new Record();
+			record.setContent(generators.generateContent());
+		}
+		
 		record.setId(UUID.randomUUID().toString());
 		record.setOrigin("jaxrs_ejb_jpa_mysql");
-		record.setRecordDateTime(TimestampGenerator.generate());
+		record.setRecordDateTime(generators.generateLocalDateTime());
 		entityManager.persist(record);		
 	}
 

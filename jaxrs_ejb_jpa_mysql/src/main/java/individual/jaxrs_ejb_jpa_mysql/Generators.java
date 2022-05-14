@@ -1,13 +1,39 @@
 package individual.jaxrs_ejb_jpa_mysql;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Random;
 
-public class TimestampGenerator {
+public class Generators {
+	
+	public String generateContent() {
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream("/words.txt");
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+		
+		String words = null;
+		
+		try {
+			words = bufferedReader.readLine();
+			bufferedReader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		String[] wordsArray = words.split(" ");
+		
+		StringBuilder sb = new StringBuilder();
+		sb.append(wordsArray[new Random().nextInt(wordsArray.length)]);
+		sb.append(wordsArray[new Random().nextInt(wordsArray.length)]);
+		
+		return sb.toString();
+	}
 
-	public static LocalDateTime generate() {
+	public LocalDateTime generateLocalDateTime() {
 		Random r = new Random();
 
 		LocalDate today = LocalDate.now();
